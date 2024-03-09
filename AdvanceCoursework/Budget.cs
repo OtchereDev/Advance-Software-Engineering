@@ -65,7 +65,10 @@ namespace AdvanceCoursework
 
         public void View()
         {
-
+            Console.WriteLine($"BudgetID: {BudgetName}");
+            Console.WriteLine($"Amount: {Amount} ");
+            Console.WriteLine($"Number of Income: {Income.Count()} ");
+            Console.WriteLine($"Number of Expenses: {Expenses.Count()} ");
         }
     }
 }

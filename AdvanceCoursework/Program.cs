@@ -5,7 +5,7 @@ class Program
     private static ExpensesTrackerApp expensesTrackerApp;
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        // Console.WriteLine("Hello, World!");
 
         // private string UId = "et11234";
 
@@ -17,10 +17,29 @@ class Program
 
         Transaction transA = new Transaction( TransactionType.Income, catA, budA, "This is our first budget", true);
 
-        transA.View();
+        //transA.View();
 
+        {
+             // Creating an Instance of the Expenses Tracker App
+             expensesTrackerApp = new ExpensesTrackerApp();
 
+            StartApplicatioin();
 
+        }
+    }
+
+    private static void StartApplicatioin()
+    {
+
+        // Main Program Start Here
+
+        // Main Menu
+        Console.WriteLine("Welcome to the Westminster Vehicle Rentals");
+        Console.WriteLine("Select to continue as:");
+        Console.WriteLine("1. User Menu");
+        Console.WriteLine("2. Admin Menu");
+        Console.WriteLine("3. Retun to main menu");
+        Console.WriteLine("0. Exit");
 
     }
 }
