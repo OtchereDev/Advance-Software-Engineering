@@ -2,6 +2,7 @@
 
 class Program
 {
+    private static ExpensesTrackerApp expensesTrackerApp;
     static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
@@ -12,9 +13,11 @@ class Program
 
         BudgetItem biA = new BudgetItem( 300, catA );
 
-        Budget budA = new Budget( 3000, "et11234");
+        Budget budA = new Budget("March Budget", 3000, "et11234");
 
         Transaction transA = new Transaction( TransactionType.Income, catA, budA, "This is our first budget", true);
+
+        transA.View();
 
 
 

@@ -54,6 +54,30 @@ namespace AdvanceCoursework
 
         // No setter for transactionID as it's read-only
 
+        // Checking the recurring status to return YES or NO
+        public string CheckRecur(bool Recur)
+        {
+            if (Recur)
+            {
+                return "Yes";
+            }
+            else
+            {
+                return "No";
+            }
+        }
+
+        // View Transaction Details
+        public void View()
+        {            
+            Console.WriteLine($"TransactionID: {TransactionID}");
+            Console.WriteLine($"Transaction Type: {TransType}");
+            Category.View();
+            Budget.ViewInline();
+            Console.WriteLine($"Note: {Note} ");
+            Console.WriteLine($"Recurring Status: {CheckRecur(Recurring)}");
+            Console.WriteLine($"Transaction Time: {DateAndTime}");
+        }
 
 
     }

@@ -14,5 +14,15 @@ namespace AdvanceCoursework
         {
             Name = name;
         }
+
+        public void View()
+        {
+            Console.WriteLine($"Category: {Name}");
+        }
+
+        public void ViewMain()
+        {
+            Console.WriteLine($"{Name}");
+        }
     }
 }
