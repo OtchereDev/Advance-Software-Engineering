@@ -8,7 +8,7 @@ namespace AdvanceCoursework
 {
     internal class Category
     {
-        public string Name { get; set; }
+        private string Name { get; set; }
 
         public Category(string name)
         {

@@ -15,12 +15,12 @@ namespace AdvanceCoursework
     internal class Transaction
     {
         public string TransactionID { get; private set; }
-        public TransactionType TransType { get; set; }
-        public Category Category { get; set; }
-        public Budget Budget { get; set; }
-        public string? Note { get; set; } // Making Note attribute optional
-        public bool Recurring { get; set; }
-        public DateTime DateAndTime { get; set; }
+        public TransactionType TransType { get; private set; }
+        public Category Category { get; private set; }
+        public Budget Budget { get; private set; }
+        public string Note { get; private set; }
+        public bool Recurring { get; private set; }
+        public DateTime DateAndTime { get; private set; }
 
         // Constructor with transactionID parameter
         public Transaction(string transactionID, TransactionType transType, Category category, Budget budget, string? note, bool recurring, DateTime dateAndTime)
@@ -39,6 +39,12 @@ namespace AdvanceCoursework
             : this(Guid.NewGuid().ToString(), transType, category, budget, note, recurring, dateAndTime)
         {
         }
+
+        public Transaction(TransactionType transType, Category category, Budget budget, string note, bool recurring)
+       : this(Guid.NewGuid().ToString(), transType, category, budget, note, recurring, DateTime.Now)
+        {
+        }
+
 
         // Getter and setter methods for transactionID (read-only)
         public string GetTransactionID()
