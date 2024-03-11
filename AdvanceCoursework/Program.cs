@@ -20,8 +20,8 @@ class Program
         //transA.View();
 
         {
-             // Creating an Instance of the Expenses Tracker App
-             expensesTrackerApp = new ExpensesTrackerApp();
+            // Creating an Instance of the Expenses Tracker App
+            expensesTrackerApp = new ExpensesTrackerApp();
 
             StartApplicatioin();
 
@@ -34,12 +34,16 @@ class Program
         // Main Program Start Here
 
         // Main Menu
-        Console.WriteLine("Welcome to the Westminster Vehicle Rentals");
+        Console.WriteLine("Welcome to Teams Expences Calculator ");
         Console.WriteLine("Select to continue as:");
         Console.WriteLine("1. User Menu");
         Console.WriteLine("2. Admin Menu");
         Console.WriteLine("3. Retun to main menu");
         Console.WriteLine("0. Exit");
+
+        Console.WriteLine();
+
+
 
     }
 }
