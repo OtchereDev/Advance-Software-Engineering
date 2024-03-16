@@ -10,7 +10,7 @@ namespace AdvanceCoursework.Services
         private List<Budget> Budgets;
         private string UserId ;
 
-        private static ExpensesTrackerApp instance;
+        private static ExpenseTrackerApp instance;
         private CategoryService categoryService;
         private BudgetService budgetService;
 
@@ -29,11 +29,11 @@ namespace AdvanceCoursework.Services
             PreloadCategories();
         }
 
-        public static ExpensesTrackerApp GetInstance(string userId)
+        public static ExpenseTrackerApp GetInstance(string userId)
         {
             if (instance == null)
             {
-                instance = new ExpensesTrackerApp(userId);
+                instance = new ExpenseTrackerApp(userId);
             }
             return instance;
         }
@@ -47,7 +47,7 @@ namespace AdvanceCoursework.Services
             }
         }
 
-        public void AddCategories(string categoryName)
+        public void AddCategory(string categoryName)
         {
             var response = categoryService.AddCategory(categoryName);
 

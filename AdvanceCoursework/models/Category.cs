@@ -24,7 +24,7 @@ namespace AdvanceCoursework.Models
 
         public void View()
         {
-            Console.WriteLine($"CatID ${CategoryID}: {Name}");
+            Console.WriteLine($"CatID {CategoryID}: {Name}");
         }
 
         public void ViewMain()
