@@ -14,7 +14,7 @@ namespace AdvanceCoursework.Services
 			CategoryService = categoryService;
 		}
 
-		public bool CreateBudget(string month, int year, string userId)
+		public Budget? CreateBudget(string month, int year, string userId)
 		{
 			if(month.Length <= 0 || year <= 0 || userId.Length <= 0)
 			{
@@ -26,7 +26,7 @@ namespace AdvanceCoursework.Services
 
 				Budgets.Add(budget);
 
-				return true;
+				return budget;
 			}
 		}
 

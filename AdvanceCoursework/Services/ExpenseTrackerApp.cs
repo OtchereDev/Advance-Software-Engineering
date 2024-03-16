@@ -89,22 +89,22 @@ namespace AdvanceCoursework.Services
             }
         }
 
-        public bool AddBudget(string month, int year)
+        public Budget? AddBudget(string month, int year)
         {
             try
             {
                 var response = budgetService.CreateBudget(month, year, UserId);
-                if (response)
+                if (response != null)
                 {
                     Console.WriteLine("✅ Budget successfully created");
                 }
-                return true;
+                return response;
                 
             }
             catch(Exception error)
             {
                 Console.WriteLine($"❌ {error.Message}");
-                return false;
+                return null;
             }
         }
 
@@ -117,10 +117,12 @@ namespace AdvanceCoursework.Services
             }
         }
 
-        public void GetBudgetById(string budgetId)
+        public Budget GetBudgetById(string budgetId)
         {
             var budget = budgetService.GetBudgetById(budgetId);
             budget.View();
+
+            return budget;
         }
 
         public void DeleteBudget(string budgetId)
