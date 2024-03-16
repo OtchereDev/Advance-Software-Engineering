@@ -89,7 +89,7 @@ namespace AdvanceCoursework.Services
             }
         }
 
-        public void AddBudget(string month, int year)
+        public bool AddBudget(string month, int year)
         {
             try
             {
@@ -98,11 +98,13 @@ namespace AdvanceCoursework.Services
                 {
                     Console.WriteLine("✅ Budget successfully created");
                 }
+                return true;
                 
             }
             catch(Exception error)
             {
                 Console.WriteLine($"❌ {error.Message}");
+                return false;
             }
         }
 

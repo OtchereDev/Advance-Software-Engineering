@@ -70,7 +70,7 @@ class Program
 
             case "5":
                 Console.WriteLine();
-                // Budget Menu Here;
+                BudgetMenu();
                 break;
 
             case "6":
@@ -97,17 +97,6 @@ class Program
         Console.WriteLine("5. Return To Main Tabs");
         Console.Write("Enter your choice: ");
     }
-
-    private static void DisplayBudgetMenu()
-    {
-        Console.WriteLine("What action do you want to perform:");
-        Console.WriteLine("1. List All My Budget");
-        Console.WriteLine("2. Create A Budget");
-        Console.WriteLine("3. Update A Budget");
-        Console.WriteLine("4. Return To Main Tabs");
-        Console.Write("Enter your choice: ");
-    }
-
     private static void CreateCategory()
     {
         Utils.Utils.PrintMessage("Provide a category name:");
@@ -149,6 +138,103 @@ class Program
                 case "2":
                     Console.WriteLine();
                     CreateCategory();
+                    break;
+
+                case "3":
+                    Console.WriteLine();
+                    UpdateCategory();
+                    break;
+
+                case "4":
+                    Console.WriteLine();
+                    DeletCategory();
+                    break;
+
+                case "5":
+                    Console.WriteLine();
+                    Console.WriteLine("Returning to the main menu...");
+                    break;
+
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid input. Please try again.");
+                    break;
+            }
+
+            if (userInput == "5")
+            {
+                StartApplicatioin();
+            }
+
+        }
+    }
+
+    private static void DisplayBudgetMenu()
+    {
+        Console.WriteLine("What action do you want to perform:");
+        Console.WriteLine("1. List All My Budget");
+        Console.WriteLine("2. Create A Budget");
+        Console.WriteLine("3. Update A Budget");
+        Console.WriteLine("4. Update A Budget");
+        Console.WriteLine("5. Return To Main Tabs");
+        Console.Write("Enter your choice: ");
+    }
+
+    private static void CreatBudgetItem()
+    {
+
+    }
+
+    private static void CreateBudget()
+    {
+        Utils.Utils.PrintMessage("Provide a budget year:");
+        int year = Utils.Utils.AcceptIntegerInformation();
+
+        Utils.Utils.PrintMessage("Provide budget month eg: MAR / JUN");
+        string month = Utils.Utils.AcceptInformation();
+
+        var response = expensesTrackerApp.AddBudget(month, year);
+
+        if (response)
+        {
+            while (true)
+            {
+                Console.WriteLine("Would you like to add a budget item to your budget (YES / NO):");
+                string uInput = Utils.Utils.AcceptInformation();
+
+                if(uInput.ToLower() == "yes")
+                {
+                   
+                }
+                else if(uInput.ToLower() == "no")
+                {
+                    break;
+                }
+
+                Console.WriteLine("Invalid response. Provide either YES / NO");
+            }
+        }
+        
+    }
+
+
+    private static void BudgetMenu()
+    {
+        while (true)
+        {
+            DisplayBudgetMenu();
+            string userInput = Utils.Utils.AcceptInformation();
+
+            switch (userInput)
+            {
+                case "1":
+                    Console.WriteLine();
+                    expensesTrackerApp.ListAvailableBudgets();
+                    break;
+
+                case "2":
+                    Console.WriteLine();
+                    CreateBudget();
                     break;
 
                 case "3":
