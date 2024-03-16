@@ -3,7 +3,7 @@ namespace AdvanceCoursework.Models
 {
 	public class Category
 	{
-        private string Name { get; set; }
+        private string Name;
         private string CategoryID;
 
         public Category(string name)
@@ -12,9 +12,19 @@ namespace AdvanceCoursework.Models
             CategoryID = Guid.NewGuid().ToString();
         }
 
+        public string GetID()
+        {
+            return CategoryID;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
         public void View()
         {
-            Console.WriteLine($"Category: {Name}");
+            Console.WriteLine($"CatID ${CategoryID}: {Name}");
         }
 
         public void ViewMain()
