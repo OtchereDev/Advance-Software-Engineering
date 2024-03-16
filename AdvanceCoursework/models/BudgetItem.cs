@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdvanceCoursework
+namespace AdvanceCoursework.Models
 {
-    internal class BudgetItem
-    {
+	public class BudgetItem
+	{
         public string ItemID { get; private set; }
         public float Amount { get; private set; }
         public Category Category { get; private set; }
+   
 
-        // Constructor with itemID parameter
         public BudgetItem(string itemID, float amount, Category category)
         {
             ItemID = itemID;
@@ -32,7 +27,6 @@ namespace AdvanceCoursework
         {
             return ItemID;
         }
-
-        // View BudgetItem Details
     }
 }
+

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public enum TransactionType
 {
@@ -10,10 +6,10 @@ public enum TransactionType
     Expense
 }
 
-namespace AdvanceCoursework
+namespace AdvanceCoursework.Models
 {
-    internal class Transaction
-    {
+	public class Transaction
+	{
         public string TransactionID { get; private set; }
         public TransactionType TransType { get; private set; }
         public Category Category { get; private set; }
@@ -45,16 +41,11 @@ namespace AdvanceCoursework
         {
         }
 
-
-        // Getter and setter methods for transactionID (read-only)
         public string GetTransactionID()
         {
             return TransactionID;
         }
 
-        // No setter for transactionID as it's read-only
-
-        // Checking the recurring status to return YES or NO
         public string CheckRecur(bool Recur)
         {
             if (Recur)
@@ -67,9 +58,8 @@ namespace AdvanceCoursework
             }
         }
 
-        // View Transaction Details
         public void View()
-        {            
+        {
             Console.WriteLine($"TransactionID: {TransactionID}");
             Console.WriteLine($"Transaction Type: {TransType}");
             Category.View();
@@ -79,6 +69,6 @@ namespace AdvanceCoursework
             Console.WriteLine($"Transaction Time: {DateAndTime}");
         }
 
-
     }
 }
+

@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdvanceCoursework
+namespace AdvanceCoursework.Models
 {
-    internal class Category
-    {
+	public class Category
+	{
         private string Name { get; set; }
+        private string CategoryID;
 
         public Category(string name)
         {
             Name = name;
+            CategoryID = Guid.NewGuid().ToString();
         }
 
         public void View()
@@ -26,3 +23,4 @@ namespace AdvanceCoursework
         }
     }
 }
+

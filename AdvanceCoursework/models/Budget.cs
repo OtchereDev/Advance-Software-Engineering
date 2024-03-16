@@ -1,43 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AdvanceCoursework
+namespace AdvanceCoursework.Models
 {
-    internal class Budget
-    {
+	public class Budget
+	{
         public string BudgetID { get; private set; }
         public string BudgetName { get; private set; }
         public float Amount { get; private set; }
-        public List<BudgetItem>? Income;
+        public List<BudgetItem>? Incomes;
         public List<BudgetItem>? Expenses;
         public string UserID { get; private set; }
 
-        // Constructor with budgetID parameter
-        public Budget(string budgetID, string budgetName, float amount, List<BudgetItem>? income, List<BudgetItem>? expenses, string userId)
+        // Overloaded constructor without budgetID parameter
+        public Budget(float amount, string budgetName, string userId)
         {
-            BudgetID = budgetID;
-            BudgetName = budgetName;
+            Incomes = new List<BudgetItem>();
+            Expenses = new List<BudgetItem>();
+            BudgetID = Guid.NewGuid().ToString();
             Amount = amount;
-            Income = income;
-            Expenses = expenses;
+            BudgetName = budgetName;
             UserID = userId;
         }
 
-        // Overloaded constructor without budgetID parameter
-        public Budget(float amount, string budgetName, List<BudgetItem>? income, List<BudgetItem>? expenses, string userId)
-            : this(Guid.NewGuid().ToString(), budgetName, amount, income, expenses, userId)
+        // Constructor with budgetID parameter
+        public Budget(string budgetName, float amount, string userId, List<BudgetItem>? income, List<BudgetItem>? expenses)
+            :this(amount, budgetName, userId )
         {
+            Incomes = income;
+            Expenses = expenses;
         }
 
-        public Budget(string budgetName, float amount, string userId)
-        : this(Guid.NewGuid().ToString(), budgetName, amount, new List<BudgetItem>(), new List<BudgetItem>(), userId)
-        {
-        }
-
-
+       
 
         // Getter and setter methods for budgetID (read-only)
         public string GetBudgetID()
@@ -47,7 +41,7 @@ namespace AdvanceCoursework
 
         public void AddIncome(BudgetItem item)
         {
-            Income.Add(item);
+            Incomes.Add(item);
         }
 
         public void AddExpense(BudgetItem item)
@@ -60,15 +54,15 @@ namespace AdvanceCoursework
         {
             Console.WriteLine($"BudgetID: {BudgetName}, Amount: {Amount} ");
             //Console.Write($" ");
-            
         }
 
         public void View()
         {
             Console.WriteLine($"BudgetID: {BudgetName}");
             Console.WriteLine($"Amount: {Amount} ");
-            Console.WriteLine($"Number of Income: {Income.Count()} ");
+            Console.WriteLine($"Number of Income: {Incomes.Count()} ");
             Console.WriteLine($"Number of Expenses: {Expenses.Count()} ");
         }
     }
 }
+

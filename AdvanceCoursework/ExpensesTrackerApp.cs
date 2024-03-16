@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework
 {
-    internal class ExpensesTrackerApp
+    public class ExpensesTrackerApp
     {
         private List<Transaction> transactions;
         private List<Category> categories;
@@ -51,11 +48,11 @@ namespace AdvanceCoursework
             BudgetItem FebruarySalary = new BudgetItem(2400, salary);
 
             // Creating Budget object Instances 
-            Budget budget1 = new Budget("MarchBudget", 1000, "user1");
-            Budget budget2 = new Budget("Budget2", 1500, "user1");
-            Budget budget3 = new Budget("Budget3", 2000, "user2");
-            Budget budget4 = new Budget("Budget4", 1200, "user2");
-            Budget budget5 = new Budget("Budget5", 800, "user5");
+            Budget budget1 = new Budget( 1000, "MarchBudget", "user1");
+            Budget budget2 = new Budget(1500, "Budget2", "user1");
+            Budget budget3 = new Budget(2000, "Budget3", "user2");
+            Budget budget4 = new Budget(1200, "Budget4", "user2");
+            Budget budget5 = new Budget(800, "Budget5", "user5");
 
             budget1.AddIncome(FebruarySalary);
             budget1.AddExpense(groceriesItem1);
