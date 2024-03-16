@@ -1,47 +1,39 @@
-﻿namespace AdvanceCoursework;
+﻿using AdvanceCoursework.Services;
+
+namespace AdvanceCoursework;
 
 class Program
 {
-    private static ExpensesTrackerApp expensesTrackerApp;
+    private static ExpenseTrackerApp expensesTrackerApp;
+    private static string UserID;
+
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello, World!");
-
-        // private string UId = "et11234";
-
-        Category catA = new Category(" Bill ");
-
-        BudgetItem biA = new BudgetItem( 300, catA );
-
-        Budget budA = new Budget("March Budget", 3000, "et11234");
-
-        Transaction transA = new Transaction( TransactionType.Income, catA, budA, "This is our first budget", true);
-
-        //transA.View();
-
-        {
-            // Creating an Instance of the Expenses Tracker App
-            expensesTrackerApp = new ExpensesTrackerApp();
-
             StartApplicatioin();
+    }
 
-        }
+    private void DisplayMenu()
+    {
+        Console.WriteLine("What tab do you want to use:");
+        Console.WriteLine("1. Spendings");
+        Console.WriteLine("2. Transactions");
+        Console.WriteLine("3. Categories");
+        Console.WriteLine("4. Reports");
+        Console.Write("Enter your choice: ");
     }
 
     private static void StartApplicatioin()
     {
 
-        // Main Program Start Here
+        Console.WriteLine("Welcome to Spending Tracker\n");
+        do
+        {
+            Console.WriteLine("Please enter your UserID:");
+            UserID = Console.ReadLine();
+            Console.WriteLine("\n");
+        } while (UserID.Length <= 0);
 
-        // Main Menu
-        Console.WriteLine("Welcome to Teams Expences Calculator ");
-        Console.WriteLine("Select to continue as:");
-        Console.WriteLine("1. User Menu");
-        Console.WriteLine("2. Admin Menu");
-        Console.WriteLine("3. Retun to main menu");
-        Console.WriteLine("0. Exit");
-
-        Console.WriteLine();
+        expensesTrackerApp = ExpenseTrackerApp.GetInstance(UserID);
 
 
 

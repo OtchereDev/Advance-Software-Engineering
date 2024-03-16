@@ -3,23 +3,16 @@ namespace AdvanceCoursework.Models
 {
 	public class BudgetItem
 	{
-        public string ItemID { get; private set; }
-        public float Amount { get; private set; }
+        public string ItemID;
+        public float Amount;
         public Category Category { get; private set; }
    
 
-        public BudgetItem(string itemID, float amount, Category category)
+        public BudgetItem(float amount, Category category)
         {
-            ItemID = itemID;
+            ItemID = Guid.NewGuid().ToString();
             Amount = amount;
             Category = category;
-
-        }
-
-        // Overloaded constructor without itemID parameter
-        public BudgetItem(float amount, Category category)
-            : this(Guid.NewGuid().ToString(), amount, category)
-        {
         }
 
         // Getter and setter methods for itemID (read-only)

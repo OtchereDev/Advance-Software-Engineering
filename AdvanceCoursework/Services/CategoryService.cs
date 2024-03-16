@@ -1,26 +1,81 @@
 ﻿using System;
+using AdvanceCoursework.Models;
+
 namespace AdvanceCoursework.Services
 {
-	static public class CategoryService
+	public class CategoryService
 	{
+		private List<Category> Categories;
 
-		static public void AddCategory(string categoryName)
+		public CategoryService(List<Category> categories)
 		{
+			Categories = categories;
 		}
 
-		static public void DeleteCategory(string categoryId)
+		public bool AddCategory(string categoryName)
 		{
+			if(categoryName.Length > 0)
+			{
+				var newCategory = new Category(categoryName);
+				Categories.Add(newCategory);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
-		static public void UpdateCategory(int categoryId, string categoryName)
+		public bool DeleteCategory(string categoryId)
 		{
+			var deleteIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
 
-		}
+			if(deleteIdx == -1)
+			{
+				return false;
+			}
+			else
+			{
+				Categories.RemoveAt(deleteIdx);
+				return true;
+			}
 
-		static public void GetAllCategories()
+        }
+
+		 public bool UpdateCategory(string categoryId, string categoryName)
+		 {
+			if(categoryName.Length <= 0)
+			{
+				return false;
+			}
+
+            var updateIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
+
+            if (updateIdx == -1)
+            {
+                return false;
+            }
+            else
+            {
+				var category = Categories[updateIdx];
+				category.SetName(categoryName);
+                return true;
+            }
+        }
+
+		public Category GetCategoryById(string categoryId)
 		{
+            var getIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
 
-		}
+            if (getIdx == -1)
+            {
+				throw new Exception("Category does not exists");
+            }
+            else
+            {
+                return Categories[getIdx];
+            }
+        }
 
 	}
 }
