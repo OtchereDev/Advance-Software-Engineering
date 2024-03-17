@@ -58,12 +58,13 @@ namespace AdvanceCoursework.Models
         public void View()
         {
             Console.WriteLine($"TransactionID: {TransactionID}");
+            Console.WriteLine($"Transaction Time: {TransactionDate}");
             Console.WriteLine($"Transaction Type: {TransType}");
             Category.View();
-            Budget?.ViewInline();
+            Console.WriteLine($"Amount: {Amount}");
             Console.WriteLine($"Note: {Note} ");
+            Budget?.ViewInline();
             Console.WriteLine($"Recurring Status: {CheckRecur(Recurring)}");
-            Console.WriteLine($"Transaction Time: {TransactionDate}");
         }
 
         public virtual void WriteDetailsToFile(StreamWriter writer)

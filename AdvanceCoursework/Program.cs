@@ -381,15 +381,6 @@ class Program
         expensesTrackerApp.ListAllCategories();
         string catId = Utils.Utils.AcceptInformation();
 
-        Utils.Utils.PrintMessage("Do you want link this transaction to a budget? enter budget id for the budget");
-        expensesTrackerApp.ListAvailableBudgets();
-        budgetId = Utils.Utils.AcceptInformation();
-
-        if (budgetId.Length == 0)
-        {
-            budgetId = null;
-        }
-
         Utils.Utils.PrintMessage("Provide amount");
         float amount = Utils.Utils.AcceptFloatInformation();
 
@@ -403,6 +394,15 @@ class Program
         {
             Console.WriteLine("Enter a transaction date (e.g., MM/dd/yyyy):");
             transactionDate = Utils.Utils.AcceptDateInformation();
+        }
+
+        Utils.Utils.PrintMessage("Do you want link this transaction to a budget? enter budget id for the budget (OPTIONAL)");
+        expensesTrackerApp.ListAvailableBudgets();
+        budgetId = Utils.Utils.AcceptInformation();
+
+        if (budgetId.Length == 0)
+        {
+            budgetId = null;
         }
 
         Utils.Utils.PrintMessage("Transaction Note: (optional)");
