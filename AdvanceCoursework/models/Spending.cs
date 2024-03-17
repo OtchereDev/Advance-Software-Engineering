@@ -1,4 +1,9 @@
 ﻿using System;
+using static System.Net.Mime.MediaTypeNames;
+using System.Drawing;
+using System.Reflection;
+using System.Security.Cryptography;
+
 namespace AdvanceCoursework.Models
 {
 	public class Spending
@@ -17,6 +22,6 @@ namespace AdvanceCoursework.Models
 			Amount += amount;
 		}
 
-	}
+    }
 }
 

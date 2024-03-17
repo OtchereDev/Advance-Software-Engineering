@@ -1,4 +1,5 @@
 ﻿using System;
+using AdvanceCoursework.Interfaces;
 
 public enum TransactionType
 {
@@ -8,7 +9,7 @@ public enum TransactionType
 
 namespace AdvanceCoursework.Models
 {
-    public class Transaction
+    public class Transaction: IDisplay
     {
         public string TransactionID { get; private set; }
         public TransactionType TransType { get; private set; }
@@ -64,6 +65,12 @@ namespace AdvanceCoursework.Models
             Console.WriteLine($"Note: {Note} ");
             Console.WriteLine($"Recurring Status: {CheckRecur(Recurring)}");
             Console.WriteLine($"Transaction Time: {TransactionDate}");
+        }
+
+        public virtual void WriteDetailsToFile(StreamWriter writer)
+        {
+            var dir = TransactionType.Expense == TransType ? "-" : "+";
+            writer.WriteLine($"{TransactionDate.Date}/{TransactionDate.Month}/{TransactionDate.Year}        {Category.GetName()}    {Note}      {dir}£{Amount}");
         }
 
     }

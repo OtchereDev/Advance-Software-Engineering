@@ -1,7 +1,9 @@
 ﻿using System;
+using AdvanceCoursework.Interfaces;
+
 namespace AdvanceCoursework.Models
 {
-    public class Category
+    public class Category: IDisplay
     {
         private string Name;
         private string CategoryID;

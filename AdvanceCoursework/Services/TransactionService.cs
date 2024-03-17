@@ -163,6 +163,36 @@ namespace AdvanceCoursework.Services
 
 			return (incomes,expenses, incomeTotal, expenseTotal);
         }
-	}
+
+        public (List<Transaction>, List<Transaction>, float, float) GetSpendingReport(DateTime startDate, DateTime endDate)
+        {
+            var incomes = new List<Transaction>();
+            var expenses = new List<Transaction>();
+            float incomeTotal = 0;
+            float expenseTotal = 0;
+
+            var spendings = Transactions.OrderByDescending(x => x.TransactionDate).Where(x => x.TransactionDate >= startDate && x.TransactionDate <= endDate);
+
+            foreach (Transaction transaction in spendings)
+            {
+                if (transaction.TransType == TransactionType.Expense)
+                {
+                   expenses.Add(transaction);
+
+                    expenseTotal += transaction.Amount;
+
+                }
+                else
+                {
+                   incomes.Add(transaction);
+                   
+
+                  incomeTotal += transaction.Amount;
+                }
+            }
+
+            return (incomes, expenses, incomeTotal, expenseTotal);
+        }
+    }
 }
 

@@ -1,10 +1,11 @@
 ﻿
+using AdvanceCoursework.Interfaces;
+
 namespace AdvanceCoursework.Models
 {
-    public class Budget
+    public class Budget:IDisplay 
     {
         public string BudgetID { get; private set; }
-        public float Amount { get; private set; }
         public string Month { get; set; }
         public int Year { get; set; }
         public string UserID { get; private set; }
@@ -21,7 +22,6 @@ namespace AdvanceCoursework.Models
             Year = year;
             Month = month;
             UserID = userId;
-            Amount = 0;
         }
 
         // Constructor with budgetID parameter
@@ -53,15 +53,25 @@ namespace AdvanceCoursework.Models
         // View Budget Details
         public void ViewInline()
         {
-            Console.WriteLine($"BudgetID: {BudgetID}, Amount: {Amount}, Budget For:${Month}/${Year}");
+            Console.WriteLine($"BudgetID: {BudgetID}, Budget For:${Month}/${Year}");
         }
 
         public void View()
         {
             Console.WriteLine($"BudgetID: {BudgetID}");
-            Console.WriteLine($"Amount: {Amount} ");
-            Console.WriteLine($"Number of Income: {Incomes.Count()} ");
-            Console.WriteLine($"Number of Expenses: {Expenses.Count()} ");
+            Console.WriteLine($"Budget For: {Year}/{Month}");
+            Console.WriteLine("Incomes:");
+            foreach(BudgetItem budgetItem in Incomes)
+            {
+                budgetItem.View();
+            }
+
+            Console.WriteLine("Expenses:");
+            foreach(BudgetItem budgetItem in Expenses)
+            {
+                budgetItem.View();
+            }
+          
         }
     }
 }

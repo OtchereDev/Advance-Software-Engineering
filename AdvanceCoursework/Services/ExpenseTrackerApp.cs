@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Drawing;
+using System.Reflection;
+using System.Security.Cryptography;
 using AdvanceCoursework.Interfaces;
 using AdvanceCoursework.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AdvanceCoursework.Services
 {
@@ -261,6 +265,52 @@ namespace AdvanceCoursework.Services
             Console.WriteLine($"✅ Successfully fetched spending listing");
 
             return response;
+        }
+
+
+        public void GenerateReport(DateTime startDate, DateTime endDate, string fileName)
+        {
+            var (incomes, expenses, incomeTotal, expenseTotal) = transactionService.GetSpendingReport(startDate, endDate);
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName))
+                {
+                    writer.WriteLine($"Report For Transactions Between {startDate.Day}/{startDate.Month}/{startDate.Year} - {endDate.Day}/{endDate.Month}/{endDate.Year}");
+                   
+                    writer.WriteLine($"Transaction          Category        Note        Amount");
+                    foreach (var income in incomes)
+                    {
+                        income.WriteDetailsToFile(writer);
+                      
+                        // Add a separator between vehicles
+                        writer.WriteLine(new string('-', 30));
+                    }
+                    foreach (var expense in expenses)
+                    {
+                        expense.WriteDetailsToFile(writer);
+
+                        // Add a separator between vehicles
+                        writer.WriteLine(new string('-', 30));
+                    }
+                    writer.WriteLine($"Total                                    £{incomeTotal - expenseTotal}");
+
+
+                    Console.WriteLine($"✅ Report generated and saved to {fileName}");
+                }
+            }
+            catch (IOException ioException)
+            {
+                Console.WriteLine($"❌ Error: An IO exception occurred while writing to the file. Details: {ioException.Message}");
+            }
+            catch (UnauthorizedAccessException unauthorizedAccessException)
+            {
+                Console.WriteLine($"❌ Error: Unauthorized access to the file. Details: {unauthorizedAccessException.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error: {ex.Message}");
+            }
         }
 
         // utility methods

@@ -1,7 +1,9 @@
 ﻿using System;
+using AdvanceCoursework.Interfaces;
+
 namespace AdvanceCoursework.Models
 {
-    public class BudgetItem
+    public class BudgetItem:IDisplay
     {
         public string ItemID;
         public float Amount;
@@ -19,6 +21,11 @@ namespace AdvanceCoursework.Models
         public string GetItemID()
         {
             return ItemID;
+        }
+
+        public void View()
+        {
+            Console.WriteLine($"{Category.GetName()}: {Amount}");
         }
     }
 }

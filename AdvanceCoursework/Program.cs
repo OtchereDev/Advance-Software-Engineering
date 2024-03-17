@@ -68,6 +68,7 @@ class Program
             case "4":
                 Console.WriteLine();
                 // Report Menu Here;
+                GenerateReport();
                 break;
 
             case "5":
@@ -410,7 +411,6 @@ class Program
 
         expensesTrackerApp.CreateTransaction(transType, catId, isRecurring, isToday, amount, transactionDate,budgetId, note);
 
-
     }
 
     private static void GetTransaction()
@@ -593,6 +593,23 @@ class Program
         Console.WriteLine($"Balance:                     £{incomeTotal - expenseTotal}");
         Console.ResetColor();
         }
+
+    private static void GenerateReport()
+    {
+        Utils.Utils.PrintMessage("Enter a start date (e.g., MM/dd/yyyy):");
+        DateTime startDate = Utils.Utils.AcceptDateInformation();
+
+        Utils.Utils.PrintMessage("Enter a end date (e.g., MM/dd/yyyy):");
+        DateTime endDate = Utils.Utils.AcceptDateInformation();
+
+        string currentDirectory = Directory.GetCurrentDirectory();
+        Utils.Utils.PrintMessage("Provide the name of the file the report should have");
+        string fileName = Utils.Utils.AcceptInformation();
+
+        expensesTrackerApp.GenerateReport(startDate, endDate, fileName);
+
+        StartApplicatioin();
+    }
  
 }
 
