@@ -197,7 +197,7 @@ class Program
         expensesTrackerApp.ListAllCategories();
         string catId = Utils.Utils.AcceptInformation();
 
-        Console.WriteLine("Is this budget item for expenses (YES) or incomes (NO)");
+        Console.WriteLine("Is this budget item for expenses (TRUE) or incomes (FALSE)");
         bool isExpense = Utils.Utils.AcceptBooleanInformation();
 
         expensesTrackerApp.AddBudgetItem(budgetId, amount, catId, isExpense);
@@ -258,7 +258,9 @@ class Program
 
     private static void UpdateBudgetItem(string budgetId)
     {
+        var budget = expensesTrackerApp.GetBudgetById(budgetId);
         Utils.Utils.PrintMessage("Provide a budget item id to be updated");
+        budget.ListItems();
         string budId = Utils.Utils.AcceptInformation();
         Utils.Utils.PrintMessage("Provide the amount for this budget item");
         float amount = Utils.Utils.AcceptFloatInformation();

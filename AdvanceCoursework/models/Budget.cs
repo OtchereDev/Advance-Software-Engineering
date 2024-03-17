@@ -72,5 +72,20 @@ namespace AdvanceCoursework.Models
             }
 
         }
+
+        public void ListItems()
+        {
+            Console.WriteLine("Incomes Budget Items:");
+            foreach (BudgetItem budgetItem in Incomes)
+            {
+                budgetItem.View();
+            }
+
+            Console.WriteLine("Expenses Budget Items:");
+            foreach (BudgetItem budgetItem in Expenses)
+            {
+                budgetItem.View();
+            }
+        }
     }
 }
