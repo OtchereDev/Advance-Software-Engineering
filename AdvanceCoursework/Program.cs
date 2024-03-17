@@ -55,6 +55,7 @@ class Program
             case "2":
                 Console.WriteLine();
                 // Transaction List Here;
+                TransactionMenu();
                 break;
 
             case "3":
@@ -325,6 +326,150 @@ class Program
                 case "5":
                     Console.WriteLine();
                     DeleteBudget();
+                    break;
+
+                case "6":
+                    Console.WriteLine();
+                    break;
+
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid input. Please try again.");
+                    break;
+            }
+
+            if (userInput == "6")
+            {
+                StartApplicatioin();
+            }
+
+        }
+    }
+
+    private static void DisplayTransactionMenu()
+    {
+        Console.WriteLine("What action do you want to perform:");
+        Console.WriteLine("1. List All Transaction");
+        Console.WriteLine("2. Create A Transaction");
+        Console.WriteLine("3. Get A Transaction");
+        Console.WriteLine("4. Update A Transaction");
+        Console.WriteLine("5. Delete A Transaction");
+        Console.WriteLine("6. Return To Main Tabs");
+        Console.Write("Enter your choice: ");
+    }
+
+    private static void CreateTransaction()
+    {
+        DateTime? transactionDate = null;
+        string? budgetId;
+        TransactionType transType;
+
+        Utils.Utils.PrintMessage("Is this an expenses transaction (TRUE / FALSE)");
+        bool isExpenses = Utils.Utils.AcceptBooleanInformation();
+
+        if (isExpenses)
+        {
+            transType = TransactionType.Expense;
+        }
+        else
+        {
+            transType = TransactionType.Income;
+        }
+
+        Utils.Utils.PrintMessage("Provide category id for the category of the this expenses");
+        expensesTrackerApp.ListAllCategories();
+        string catId = Utils.Utils.AcceptInformation();
+
+        Utils.Utils.PrintMessage("Do you want link this transaction to a budget? enter budget id for the budget");
+        expensesTrackerApp.ListAvailableBudgets();
+        budgetId = Utils.Utils.AcceptInformation();
+
+        if(budgetId.Length == 0)
+        {
+            budgetId = null;
+        }
+
+        Utils.Utils.PrintMessage("Provide amount");
+        float amount = Utils.Utils.AcceptFloatInformation();
+
+        Utils.Utils.PrintMessage("Is this an recurring transaction (TRUE / FALSE)");
+        bool isRecurring = Utils.Utils.AcceptBooleanInformation();
+
+        Utils.Utils.PrintMessage("Is the transaction for Today (TRUE / FALSE)");
+        bool isToday = Utils.Utils.AcceptBooleanInformation();
+
+        if (!isToday)
+        {
+            Console.WriteLine("Enter a transaction date (e.g., MM/dd/yyyy):");
+            transactionDate = Utils.Utils.AcceptDateInformation();
+        }
+
+        Utils.Utils.PrintMessage("Transaction Note: (optional)");
+        string note = Utils.Utils.AcceptInformation();
+
+        expensesTrackerApp.CreateTransaction(transType, catId, isRecurring, isToday, amount, transactionDate,budgetId, note);
+
+
+    }
+
+    private static void GetTransaction()
+    {
+        Utils.Utils.PrintMessage("Provide a transaction id:");
+        string budId = Utils.Utils.AcceptInformation();
+        expensesTrackerApp.GetTransactionByID(budId);
+    }
+
+
+    private static void DeleteTransaction()
+    {
+        Utils.Utils.PrintMessage("Provide a transaction id:");
+        string budId = Utils.Utils.AcceptInformation();
+        expensesTrackerApp.DeleteTransaction(budId);
+    }
+
+    private static void UpdateTransaction()
+    {
+        Utils.Utils.PrintMessage("Provide a transaction id:");
+        string budId = Utils.Utils.AcceptInformation();
+
+        Utils.Utils.PrintMessage("Provide updated amount");
+        float amount = Utils.Utils.AcceptFloatInformation();
+
+        expensesTrackerApp.UpdateTransaction(budId, amount);
+    }
+
+    private static void TransactionMenu()
+    {
+        while (true)
+        {
+            DisplayTransactionMenu();
+            string userInput = Utils.Utils.AcceptInformation();
+
+            switch (userInput)
+            {
+                case "1":
+                    Console.WriteLine();
+                    expensesTrackerApp.GetAllOrderedTransaction();
+                    break;
+
+                case "2":
+                    Console.WriteLine();
+                    CreateTransaction();
+                    break;
+
+                case "3":
+                    Console.WriteLine();
+                    GetTransaction();
+                    break;
+
+                case "4":
+                    Console.WriteLine();
+                    UpdateTransaction();
+                    break;
+
+                case "5":
+                    Console.WriteLine();
+                    DeleteTransaction();
                     break;
 
                 case "6":

@@ -1,10 +1,11 @@
 ﻿using System;
+using AdvanceCoursework.Interfaces;
 using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework.Services
 {
-	public class BudgetService
-	{
+	public class BudgetService: IBudgetService
+    {
 		private List<Budget> Budgets;
 		private CategoryService CategoryService;
 

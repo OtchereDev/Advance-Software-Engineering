@@ -1,8 +1,8 @@
 ﻿
 namespace AdvanceCoursework.Models
 {
-	public class Budget
-	{
+    public class Budget
+    {
         public string BudgetID { get; private set; }
         public float Amount { get; private set; }
         public string Month { get; set; }
@@ -13,7 +13,7 @@ namespace AdvanceCoursework.Models
         public List<BudgetItem>? Expenses;
 
         // Overloaded constructor without budgetID parameter
-        public Budget(int year,string month, string userId)
+        public Budget(int year, string month, string userId)
         {
             Incomes = new List<BudgetItem>();
             Expenses = new List<BudgetItem>();
@@ -26,13 +26,13 @@ namespace AdvanceCoursework.Models
 
         // Constructor with budgetID parameter
         public Budget(int year, string userId, string month, List<BudgetItem>? income, List<BudgetItem>? expenses)
-            :this(year, month, userId )
+            : this(year, month, userId)
         {
             Incomes = income;
             Expenses = expenses;
         }
 
-       
+
 
         // Getter and setter methods for budgetID (read-only)
         public string GetBudgetID()
@@ -65,4 +65,3 @@ namespace AdvanceCoursework.Models
         }
     }
 }
-

@@ -1,9 +1,10 @@
 ﻿using System;
+using AdvanceCoursework.Interfaces;
 using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework.Services
 {
-	public class CategoryService
+	public class CategoryService: ICategoryService
 	{
 		private List<Category> Categories;
 

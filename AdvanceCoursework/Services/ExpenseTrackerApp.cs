@@ -1,9 +1,10 @@
 ﻿using System;
+using AdvanceCoursework.Interfaces;
 using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework.Services
 {
-	public class ExpenseTrackerApp
+	public class ExpenseTrackerApp: IExpenseTrackerApp
 	{
         private List<Transaction> Transactions;
         private List<Category> Categories;
@@ -13,6 +14,7 @@ namespace AdvanceCoursework.Services
         private static ExpenseTrackerApp instance;
         private CategoryService categoryService;
         private BudgetService budgetService;
+        private TransactionService transactionService;
 
         private ExpenseTrackerApp(string userId)
         {
@@ -24,6 +26,7 @@ namespace AdvanceCoursework.Services
             //services
             categoryService = new CategoryService(Categories);
             budgetService = new BudgetService(Budgets, categoryService);
+            transactionService = new TransactionService(Transactions, categoryService, budgetService);
 
             // Prepopulates the expense tracker with categories
             PreloadCategories();
@@ -117,12 +120,20 @@ namespace AdvanceCoursework.Services
             }
         }
 
-        public Budget GetBudgetById(string budgetId)
+        public Budget? GetBudgetById(string budgetId)
         {
-            var budget = budgetService.GetBudgetById(budgetId);
-            budget.View();
+            try
+            {
+                var budget = budgetService.GetBudgetById(budgetId);
+                budget.View();
 
-            return budget;
+                return budget;
+
+            }catch(Exception error)
+            {
+                Console.WriteLine($"❌ {error.Message}");
+                return null;
+            }
         }
 
         public void DeleteBudget(string budgetId)
@@ -175,6 +186,76 @@ namespace AdvanceCoursework.Services
             {
                 Console.WriteLine($"❌ {error.Message}");
             }
+        }
+
+        public void GetAllTransactions()
+        {
+            transactionService.GetAllTransactions();
+        }
+
+        public void GetAllOrderedTransaction()
+        {
+            transactionService.GetOrderedTransaction();
+        }
+
+        public void CreateTransaction(TransactionType transType, string catId, bool isRecurring, bool isToday, float amount, DateTime? dateTime, string? budgetId, string? note)
+        {
+            try
+            {
+                transactionService.AddTransaction(transType, catId, isRecurring, isToday, amount, dateTime, budgetId, note);
+                Console.WriteLine($"✅ Successfully created transaction");
+            }
+            catch(Exception error)
+            {
+                Console.WriteLine($"❌ {error.Message}");
+            }
+        }
+
+        public void DeleteTransaction(string transactionId)
+        {
+             var response =  transactionService.DeleteTransaction(transactionId);
+
+            if (response)
+            {
+                Console.WriteLine($"✅ Successfully deleted transaction");
+
+            }
+            else
+            {
+                Console.WriteLine($"❌ Could not delete, transaction does not exist");
+            }
+        }
+
+        public void GetTransactionByID(string transId)
+        {
+            try
+            {
+                var response = transactionService.GetTransactionById(transId);
+
+            }catch(Exception error)
+            {
+                Console.WriteLine($"❌ {error.Message}");
+            }
+
+        }
+
+        public void UpdateTransaction(string transactionId, float amount)
+        {
+            var response = transactionService.UpdateTransaction(transactionId, amount);
+
+            if (response)
+            {
+                Console.WriteLine($"✅ Successfully update transaction");
+            }
+            else
+            {
+                Console.WriteLine($"❌ Could not update, transaction does not exist");
+            }
+        }
+
+        public void AddListing()
+        {
+
         }
 
         // utility methods

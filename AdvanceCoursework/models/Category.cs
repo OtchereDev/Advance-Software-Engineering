@@ -1,8 +1,8 @@
 ﻿using System;
 namespace AdvanceCoursework.Models
 {
-	public class Category
-	{
+    public class Category
+    {
         private string Name;
         private string CategoryID;
 
@@ -33,4 +33,3 @@ namespace AdvanceCoursework.Models
         }
     }
 }
-
