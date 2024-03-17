@@ -50,7 +50,7 @@ namespace AdvanceCoursework.Services
 
             if(Categories.Count() == 0)
             {
-                Console.WriteLine("There are no categeries");
+                Console.WriteLine("There are no categeries 🥲");
             }
         }
 
@@ -121,6 +121,11 @@ namespace AdvanceCoursework.Services
             foreach (Budget budget in Budgets)
             {
                 budget.ViewInline();
+            }
+
+            if (Budgets.Count() == 0)
+            {
+                Console.WriteLine("There are no budgets 🥲");
             }
         }
 
