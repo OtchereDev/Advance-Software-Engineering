@@ -23,7 +23,7 @@ namespace AdvanceCoursework.Models
 
         public void View()
         {
-            Console.WriteLine($"{Category.GetName()}: {Amount}");
+            Console.WriteLine($"ID:{ItemID} {Category.GetName()}: {Amount}");
         }
     }
 }
