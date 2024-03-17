@@ -194,6 +194,7 @@ class Program
         float amount = Utils.Utils.AcceptFloatInformation();
 
         Console.WriteLine("Provide the categoryid for this budget item");
+        expensesTrackerApp.ListAllCategories();
         string catId = Utils.Utils.AcceptInformation();
 
         Console.WriteLine("Is this budget item for expenses (YES) or incomes (NO)");
