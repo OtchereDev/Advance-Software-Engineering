@@ -257,7 +257,7 @@ class Program
 
     private static void UpdateBudgetItem(string budgetId)
     {
-        Utils.Utils.PrintMessage("Provide a budget item id to be deleted");
+        Utils.Utils.PrintMessage("Provide a budget item id to be updated");
         string budId = Utils.Utils.AcceptInformation();
         Utils.Utils.PrintMessage("Provide the amount for this budget item");
         float amount = Utils.Utils.AcceptFloatInformation();
