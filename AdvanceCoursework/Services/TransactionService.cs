@@ -96,6 +96,11 @@ namespace AdvanceCoursework.Services
 				trans.View();
 				Console.WriteLine("-------------------------------------------");
 			}
+
+			if(Transactions.Count() == 0)
+			{
+				Console.WriteLine("You have no transactions yet 🥲");
+			}
 		}
 
 		public bool UpdateTransaction(string transId, float amount)

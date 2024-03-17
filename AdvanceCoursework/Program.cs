@@ -450,26 +450,31 @@ class Program
                 case "1":
                     Console.WriteLine();
                     expensesTrackerApp.GetAllOrderedTransaction();
+                    Console.WriteLine();
                     break;
 
                 case "2":
                     Console.WriteLine();
                     CreateTransaction();
+                    Console.WriteLine();
                     break;
 
                 case "3":
                     Console.WriteLine();
                     GetTransaction();
+                    Console.WriteLine();
                     break;
 
                 case "4":
                     Console.WriteLine();
                     UpdateTransaction();
+                    Console.WriteLine();
                     break;
 
                 case "5":
                     Console.WriteLine();
                     DeleteTransaction();
+                    Console.WriteLine();
                     break;
 
                 case "6":
@@ -479,6 +484,7 @@ class Program
                 default:
                     Console.WriteLine();
                     Console.WriteLine("Invalid input. Please try again.");
+                    Console.WriteLine();
                     break;
             }
 
