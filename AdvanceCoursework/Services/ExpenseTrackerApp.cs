@@ -253,9 +253,14 @@ namespace AdvanceCoursework.Services
             }
         }
 
-        public void AddListing()
+        public (List<Spending>, List<Spending>, float, float) SpendingListing(DateTime dateTime)
         {
+            var response = transactionService.GetSpending(dateTime);
 
+            
+            Console.WriteLine($"✅ Successfully fetched spending listing");
+
+            return response;
         }
 
         // utility methods

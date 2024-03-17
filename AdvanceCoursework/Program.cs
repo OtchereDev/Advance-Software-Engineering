@@ -1,4 +1,5 @@
-﻿using AdvanceCoursework.Services;
+﻿using AdvanceCoursework.Models;
+using AdvanceCoursework.Services;
 using AdvanceCoursework.Utils;
 
 namespace AdvanceCoursework;
@@ -49,7 +50,7 @@ class Program
         {
             case "1":
                 Console.WriteLine();
-                //Spending List Here;
+                DisplaySpendingTab();
                 break;
 
             case "2":
@@ -489,5 +490,109 @@ class Program
 
         }
     }
+
+    private static void DisplaySpendingMenu(DateTime date)
+    {
+        DateTime prevMonth = AdjustDateMonth(date, -1);
+        DateTime nextMonth = AdjustDateMonth(date, 1);
+
+        Console.WriteLine("What action do you want to perform:");
+        Console.WriteLine($"1. Previous Month ({prevMonth.Year}/{prevMonth.Month})");
+        Console.WriteLine($"2. Next Month ({nextMonth.Year}/{nextMonth.Month})");
+        Console.WriteLine("3. Return To Main Tabs");
+        Console.Write("Enter your choice: ");
+    }
+
+    private static DateTime AdjustDateMonth(DateTime date, int increase)
+    {
+        DateTime newDate;
+        if(increase == -1)
+        {
+            if(date.Month - 1 == 0)
+            {
+                newDate = new DateTime(date.Year - 1, 12, date.Day);
+            }
+            else
+            {
+                newDate = date.AddMonths(-1);
+            }
+        }
+        else
+        {
+            if(date.Month +1 == 13) { 
+            newDate = new DateTime(date.Year + 1, 1, date.Day);
+
+            }else {
+                newDate = date.AddMonths(1);
+        }
+        }
+
+        return newDate;
+       
+    }
+
+    private static void DisplaySpendingTab()
+    {
+        var date = DateTime.Now;
+        DisplSpending(date);
+        
+
+        while (true)
+        {
+            Console.WriteLine("");
+            DisplaySpendingMenu(date);
+            string uInput = Utils.Utils.AcceptInformation();
+
+            if(uInput == "1")
+            {
+                date = AdjustDateMonth(date, -1);
+                DisplSpending(date);
+            }
+            else if(uInput == "2")
+            {
+                date = AdjustDateMonth(date, 1);
+                DisplSpending(date);
+            }else if (uInput == "3")
+            {
+                StartApplicatioin();
+            }
+
+        }
+    }
+
+    private static void DisplSpending(DateTime date)
+    {
+       
+        var (incomes, expenses, incomeTotal, expenseTotal) = expensesTrackerApp.SpendingListing(date);
+        Console.WriteLine($"Your spending for {date.Date}/{date.Month}/{date.Year}");
+
+        Console.WriteLine("");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"Incomes:                     £{incomeTotal}");
+        Console.ResetColor();
+        var i = 1;
+        foreach (Spending spending in incomes)
+        {
+            Console.WriteLine($"\t{i}.{spending.Category.GetName()}:            £{spending.Amount}");
+            i++;
+        }
+
+        Console.WriteLine("");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"Expenses:                     £{expenseTotal}");
+        Console.ResetColor();
+        i = 1;
+        foreach (Spending spending in expenses)
+        {
+            Console.WriteLine($"\t{i}. {spending.Category.GetName()}:            £{spending.Amount}");
+            i++;
+        }
+
+        Console.WriteLine("---------------------------------------------------------------------");
+        Console.ForegroundColor = (incomeTotal - expenseTotal) > 0 ? ConsoleColor.Green : ConsoleColor.Red;
+        Console.WriteLine($"Balance:                     £{incomeTotal - expenseTotal}");
+        Console.ResetColor();
+        }
+ 
 }
 

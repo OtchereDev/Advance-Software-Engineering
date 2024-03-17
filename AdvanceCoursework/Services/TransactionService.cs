@@ -113,6 +113,56 @@ namespace AdvanceCoursework.Services
                 return true;
             }
         }
+
+		public (List<Spending>, List<Spending>, float, float) GetSpending(DateTime dateTime)
+		{
+			var startDate = new DateTime(dateTime.Year, dateTime.Month, 1);
+			var endDate = new DateTime(dateTime.Year, dateTime.Month, 31);
+
+			var incomes = new List<Spending>();
+			var expenses = new List<Spending>();
+			float incomeTotal = 0;
+			float expenseTotal = 0;
+
+			var spendings = Transactions.OrderByDescending(x => x.TransactionDate).Where(x => x.TransactionDate >= startDate && x.TransactionDate <= endDate);
+
+			foreach(Transaction transaction in spendings)
+			{
+				if(transaction.TransType == TransactionType.Expense)
+				{
+					var spending = expenses.FirstOrDefault(x=>x.Category.GetID() == transaction.Category.GetID());
+					if (spending == null)
+					{
+						var sp = new Spending(transaction.Category, transaction.Amount);
+						expenses.Add(sp);
+					}
+					else
+					{
+						spending.IncreaseAmount(transaction.Amount);
+					}
+
+					expenseTotal += transaction.Amount;
+
+                }
+				else
+				{
+                    var spending = incomes.FirstOrDefault(x => x.Category.GetID() == transaction.Category.GetID());
+                    if (spending == null)
+                    {
+                        var sp = new Spending(transaction.Category, transaction.Amount);
+                        incomes.Add(sp);
+                    }
+                    else
+                    {
+                        spending.IncreaseAmount(transaction.Amount);
+                    }
+
+					incomeTotal += transaction.Amount;
+                }
+			}
+
+			return (incomes,expenses, incomeTotal, expenseTotal);
+        }
 	}
 }
 
