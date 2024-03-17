@@ -65,7 +65,7 @@ namespace AdvanceCoursework.Services
 
 		public void GetAllTransactions()
 		{
-			Console.WriteLine("Thes are all your transactions");
+			Console.WriteLine("These are all your transactions");
 			foreach (Transaction trans in Transactions)
 			{
 				trans.View();
@@ -90,14 +90,14 @@ namespace AdvanceCoursework.Services
 
 		public void GetOrderedTransaction()
 		{
-			Console.WriteLine("Thes are all your transactions");
+			Console.WriteLine("These are all your transactions");
 			foreach (Transaction trans in Transactions.OrderByDescending(x => x.TransactionDate))
 			{
 				trans.View();
 				Console.WriteLine("-------------------------------------------");
 			}
 
-			if(Transactions.Count() == 0)
+			if (Transactions.Count() == 0)
 			{
 				Console.WriteLine("You have no transactions yet 🥲");
 			}
