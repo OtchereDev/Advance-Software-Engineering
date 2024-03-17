@@ -1,5 +1,4 @@
-﻿using System;
-namespace AdvanceCoursework.Interfaces
+﻿namespace AdvanceCoursework.Interfaces
 {
 	public interface IDisplay
 	{

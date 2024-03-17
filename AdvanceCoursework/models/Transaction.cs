@@ -1,5 +1,4 @@
-﻿using System;
-using AdvanceCoursework.Interfaces;
+﻿using AdvanceCoursework.Interfaces;
 
 public enum TransactionType
 {

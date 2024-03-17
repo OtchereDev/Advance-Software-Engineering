@@ -1,10 +1,5 @@
-﻿using System;
-using System.Drawing;
-using System.Reflection;
-using System.Security.Cryptography;
-using AdvanceCoursework.Interfaces;
+﻿using AdvanceCoursework.Interfaces;
 using AdvanceCoursework.Models;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace AdvanceCoursework.Services
 {

@@ -1,6 +1,4 @@
-﻿
-using System;
-using AdvanceCoursework.Models;
+﻿using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework.Interfaces
 {
