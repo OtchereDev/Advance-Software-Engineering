@@ -2,8 +2,8 @@
 
 namespace AdvanceCoursework.Interfaces
 {
-	public interface IExpenseTrackerApp
-	{
+    public interface IExpenseTrackerApp
+    {
         public void ListAllCategories();
 
         public void AddCategory(string categoryName);

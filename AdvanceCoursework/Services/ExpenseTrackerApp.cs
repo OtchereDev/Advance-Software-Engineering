@@ -3,12 +3,12 @@ using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework.Services
 {
-	public class ExpenseTrackerApp: IExpenseTrackerApp
-	{
+    public class ExpenseTrackerApp : IExpenseTrackerApp
+    {
         private List<Transaction> Transactions;
         private List<Category> Categories;
         private List<Budget> Budgets;
-        private string UserId ;
+        private string UserId;
 
         private static ExpenseTrackerApp instance;
         private CategoryService categoryService;
@@ -43,7 +43,7 @@ namespace AdvanceCoursework.Services
         public void ListAllCategories()
         {
             Console.WriteLine("Categories Available Are:");
-            foreach(Category category in Categories)
+            foreach (Category category in Categories)
             {
                 category.View();
             }
@@ -101,9 +101,9 @@ namespace AdvanceCoursework.Services
                     Console.WriteLine("✅ Budget successfully created");
                 }
                 return response;
-                
+
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 Console.WriteLine($"❌ {error.Message}");
                 return null;
@@ -128,7 +128,8 @@ namespace AdvanceCoursework.Services
 
                 return budget;
 
-            }catch(Exception error)
+            }
+            catch (Exception error)
             {
                 Console.WriteLine($"❌ {error.Message}");
                 return null;
@@ -142,7 +143,7 @@ namespace AdvanceCoursework.Services
                 budgetService.DeleteBudget(budgetId);
                 Console.WriteLine($"✅ Successfully deleted budget");
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 Console.WriteLine($"❌ {error.Message}");
             }
@@ -204,7 +205,7 @@ namespace AdvanceCoursework.Services
                 transactionService.AddTransaction(transType, catId, isRecurring, isToday, amount, dateTime, budgetId, note);
                 Console.WriteLine($"✅ Successfully created transaction");
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 Console.WriteLine($"❌ {error.Message}");
             }
@@ -212,7 +213,7 @@ namespace AdvanceCoursework.Services
 
         public void DeleteTransaction(string transactionId)
         {
-             var response =  transactionService.DeleteTransaction(transactionId);
+            var response = transactionService.DeleteTransaction(transactionId);
 
             if (response)
             {
@@ -231,7 +232,8 @@ namespace AdvanceCoursework.Services
             {
                 var response = transactionService.GetTransactionById(transId);
 
-            }catch(Exception error)
+            }
+            catch (Exception error)
             {
                 Console.WriteLine($"❌ {error.Message}");
             }
@@ -256,7 +258,7 @@ namespace AdvanceCoursework.Services
         {
             var response = transactionService.GetSpending(dateTime);
 
-            
+
             Console.WriteLine($"✅ Successfully fetched spending listing");
 
             return response;
@@ -272,12 +274,12 @@ namespace AdvanceCoursework.Services
                 using (StreamWriter writer = new StreamWriter(fileName))
                 {
                     writer.WriteLine($"Report For Transactions Between {startDate.Day}/{startDate.Month}/{startDate.Year} - {endDate.Day}/{endDate.Month}/{endDate.Year}");
-                   
+
                     writer.WriteLine($"Transaction          Category        Note        Amount");
                     foreach (var income in incomes)
                     {
                         income.WriteDetailsToFile(writer);
-                      
+
                         // Add a separator between vehicles
                         writer.WriteLine(new string('-', 30));
                     }
@@ -326,6 +328,6 @@ namespace AdvanceCoursework.Services
         }
 
 
-	}
+    }
 }
 

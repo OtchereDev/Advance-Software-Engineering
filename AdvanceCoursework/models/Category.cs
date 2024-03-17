@@ -2,7 +2,7 @@
 
 namespace AdvanceCoursework.Models
 {
-    public class Category: IDisplay
+    public class Category : IDisplay
     {
         private string Name;
         private string CategoryID;

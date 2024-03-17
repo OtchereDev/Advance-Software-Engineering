@@ -2,8 +2,8 @@
 
 namespace AdvanceCoursework.Interfaces
 {
-	public interface ITransactionService
-	{
+    public interface ITransactionService
+    {
         public void AddTransaction(TransactionType transType, string catId, bool isRecurring, bool isToday, float amount, DateTime? dateTime, string? budgetId, string? note);
 
         public bool DeleteTransaction(string transId);

@@ -113,7 +113,7 @@ class Program
         string catId = Utils.Utils.AcceptInformation();
         Utils.Utils.PrintMessage("Provide a category name:");
         string catName = Utils.Utils.AcceptInformation();
-        expensesTrackerApp.UpdateCategory(catId,catName);
+        expensesTrackerApp.UpdateCategory(catId, catName);
     }
 
     private static void DeletCategory()
@@ -215,11 +215,11 @@ class Program
                 Console.WriteLine("Would you like to add a budget item to your budget (YES / NO):");
                 string uInput = Utils.Utils.AcceptInformation();
 
-                if(uInput.ToLower() == "yes")
+                if (uInput.ToLower() == "yes")
                 {
                     CreatBudgetItem(response.BudgetID);
                 }
-                else if(uInput.ToLower() == "no")
+                else if (uInput.ToLower() == "no")
                 {
                     break;
                 }
@@ -227,7 +227,7 @@ class Program
                 Console.WriteLine("Invalid response. Provide either YES / NO");
             }
         }
-        
+
     }
 
     private static void DeleteBudget()
@@ -266,7 +266,7 @@ class Program
         string budId = Utils.Utils.AcceptInformation();
         var budget = expensesTrackerApp.GetBudgetById(budId);
 
-        if(budget != null)
+        if (budget != null)
         {
             while (true)
             {
@@ -281,7 +281,7 @@ class Program
                 {
                     DeleteBudgetItem(budId);
                 }
-                else if(uInput == "2")
+                else if (uInput == "2")
                 {
                     UpdateBudgetItem(budId);
                 }
@@ -385,7 +385,7 @@ class Program
         expensesTrackerApp.ListAvailableBudgets();
         budgetId = Utils.Utils.AcceptInformation();
 
-        if(budgetId.Length == 0)
+        if (budgetId.Length == 0)
         {
             budgetId = null;
         }
@@ -408,7 +408,7 @@ class Program
         Utils.Utils.PrintMessage("Transaction Note: (optional)");
         string note = Utils.Utils.AcceptInformation();
 
-        expensesTrackerApp.CreateTransaction(transType, catId, isRecurring, isToday, amount, transactionDate,budgetId, note);
+        expensesTrackerApp.CreateTransaction(transType, catId, isRecurring, isToday, amount, transactionDate, budgetId, note);
 
     }
 
@@ -505,9 +505,9 @@ class Program
     private static DateTime AdjustDateMonth(DateTime date, int increase)
     {
         DateTime newDate;
-        if(increase == -1)
+        if (increase == -1)
         {
-            if(date.Month - 1 == 0)
+            if (date.Month - 1 == 0)
             {
                 newDate = new DateTime(date.Year - 1, 12, date.Day);
             }
@@ -518,23 +518,26 @@ class Program
         }
         else
         {
-            if(date.Month +1 == 13) { 
-            newDate = new DateTime(date.Year + 1, 1, date.Day);
+            if (date.Month + 1 == 13)
+            {
+                newDate = new DateTime(date.Year + 1, 1, date.Day);
 
-            }else {
+            }
+            else
+            {
                 newDate = date.AddMonths(1);
-        }
+            }
         }
 
         return newDate;
-       
+
     }
 
     private static void DisplaySpendingTab()
     {
         var date = DateTime.Now;
         DisplSpending(date);
-        
+
 
         while (true)
         {
@@ -542,16 +545,17 @@ class Program
             DisplaySpendingMenu(date);
             string uInput = Utils.Utils.AcceptInformation();
 
-            if(uInput == "1")
+            if (uInput == "1")
             {
                 date = AdjustDateMonth(date, -1);
                 DisplSpending(date);
             }
-            else if(uInput == "2")
+            else if (uInput == "2")
             {
                 date = AdjustDateMonth(date, 1);
                 DisplSpending(date);
-            }else if (uInput == "3")
+            }
+            else if (uInput == "3")
             {
                 StartApplicatioin();
             }
@@ -561,9 +565,9 @@ class Program
 
     private static void DisplSpending(DateTime date)
     {
-       
+
         var (incomes, expenses, incomeTotal, expenseTotal) = expensesTrackerApp.SpendingListing(date);
-        Console.WriteLine($"Your spending for {date.Date}/{date.Month}/{date.Year}");
+        Console.WriteLine($"Your spending for {date.Day}/{date.Month}/{date.Year}");
 
         Console.WriteLine("");
         Console.ForegroundColor = ConsoleColor.Green;
@@ -591,7 +595,7 @@ class Program
         Console.ForegroundColor = (incomeTotal - expenseTotal) > 0 ? ConsoleColor.Green : ConsoleColor.Red;
         Console.WriteLine($"Balance:                     £{incomeTotal - expenseTotal}");
         Console.ResetColor();
-        }
+    }
 
     private static void GenerateReport()
     {
@@ -609,6 +613,6 @@ class Program
 
         StartApplicatioin();
     }
- 
+
 }
 

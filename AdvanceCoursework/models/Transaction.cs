@@ -8,7 +8,7 @@ public enum TransactionType
 
 namespace AdvanceCoursework.Models
 {
-    public class Transaction: IDisplay
+    public class Transaction : IDisplay
     {
         public string TransactionID { get; private set; }
         public TransactionType TransType { get; private set; }
@@ -17,7 +17,7 @@ namespace AdvanceCoursework.Models
         public string? Note { get; private set; }
         public bool Recurring { get; private set; }
         public DateTime TransactionDate { get; private set; }
-        public float Amount {get; set;}
+        public float Amount { get; set; }
 
         // Constructor with transactionID parameter
         public Transaction(TransactionType transType, Category category, bool recurring, DateTime dateAndTime, float amount, Budget? budget, string? note)
@@ -33,8 +33,8 @@ namespace AdvanceCoursework.Models
         }
 
 
-        public Transaction(TransactionType transType, Category category, bool recurring,float amount, Budget? budget, string? note)
-       : this(transType, category, recurring,  DateTime.Now, amount, budget, note)
+        public Transaction(TransactionType transType, Category category, bool recurring, float amount, Budget? budget, string? note)
+       : this(transType, category, recurring, DateTime.Now, amount, budget, note)
         {
         }
 
@@ -69,7 +69,7 @@ namespace AdvanceCoursework.Models
         public virtual void WriteDetailsToFile(StreamWriter writer)
         {
             var dir = TransactionType.Expense == TransType ? "-" : "+";
-            writer.WriteLine($"{TransactionDate.Date}/{TransactionDate.Month}/{TransactionDate.Year}        {Category.GetName()}    {Note}      {dir}£{Amount}");
+            writer.WriteLine($"{TransactionDate.Day}/{TransactionDate.Month}/{TransactionDate.Year}        {Category.GetName()}    {Note}      {dir}£{Amount}");
         }
 
     }

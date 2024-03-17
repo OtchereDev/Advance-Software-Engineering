@@ -2,8 +2,8 @@
 
 namespace AdvanceCoursework.Interfaces
 {
-	public interface IBudgetService
-	{
+    public interface IBudgetService
+    {
         public Budget? CreateBudget(string month, int year, string userId);
 
         public bool DeleteBudget(string budgetID);

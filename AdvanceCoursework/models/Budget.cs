@@ -2,7 +2,7 @@
 
 namespace AdvanceCoursework.Models
 {
-    public class Budget:IDisplay 
+    public class Budget : IDisplay
     {
         public string BudgetID { get; private set; }
         public string Month { get; set; }
@@ -60,17 +60,17 @@ namespace AdvanceCoursework.Models
             Console.WriteLine($"BudgetID: {BudgetID}");
             Console.WriteLine($"Budget For: {Year}/{Month}");
             Console.WriteLine("Incomes:");
-            foreach(BudgetItem budgetItem in Incomes)
+            foreach (BudgetItem budgetItem in Incomes)
             {
                 budgetItem.View();
             }
 
             Console.WriteLine("Expenses:");
-            foreach(BudgetItem budgetItem in Expenses)
+            foreach (BudgetItem budgetItem in Expenses)
             {
                 budgetItem.View();
             }
-          
+
         }
     }
 }

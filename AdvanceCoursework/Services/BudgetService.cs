@@ -3,8 +3,8 @@ using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework.Services
 {
-	public class BudgetService: IBudgetService
-    {
+	public class BudgetService : IBudgetService
+	{
 		private List<Budget> Budgets;
 		private CategoryService CategoryService;
 
@@ -16,7 +16,7 @@ namespace AdvanceCoursework.Services
 
 		public Budget? CreateBudget(string month, int year, string userId)
 		{
-			if(month.Length <= 0 || year <= 0 || userId.Length <= 0)
+			if (month.Length <= 0 || year <= 0 || userId.Length <= 0)
 			{
 				throw new Exception("Invalid parameters were provided, please provide valid answers");
 			}
@@ -32,9 +32,9 @@ namespace AdvanceCoursework.Services
 
 		public bool DeleteBudget(string budgetID)
 		{
-            var deleteIdx = Budgets.FindIndex(budget => budget.BudgetID != budgetID);
+			var deleteIdx = Budgets.FindIndex(budget => budget.BudgetID != budgetID);
 
-			if(deleteIdx == -1)
+			if (deleteIdx == -1)
 			{
 				throw new Exception($"Budget with the ID {budgetID} does not exist");
 			}
@@ -44,7 +44,7 @@ namespace AdvanceCoursework.Services
 
 				return true;
 			}
-        }
+		}
 
 		public void AddBudgetItem(float amount, string categoryId, string budgetId, bool isExpense)
 		{
@@ -55,11 +55,12 @@ namespace AdvanceCoursework.Services
 			{
 				category = CategoryService.GetCategoryById(categoryId);
 				budget = GetBudgetById(budgetId);
-			}catch(Exception exception)
-			{
-                throw exception;
 			}
-			
+			catch (Exception exception)
+			{
+				throw exception;
+			}
+
 			var newItem = new BudgetItem(amount, category);
 
 			if (isExpense)
@@ -81,14 +82,14 @@ namespace AdvanceCoursework.Services
 				budget = GetBudgetById(budgetId);
 				var deleteIdx = budget.Expenses.FindIndex(bud => bud.GetItemID() == budgetItemId);
 
-				if(deleteIdx > -1)
+				if (deleteIdx > -1)
 				{
 					budget.Expenses.RemoveAt(deleteIdx);
 				}
 				else
 				{
 					deleteIdx = budget.Incomes.FindIndex(bud => bud.GetItemID() == budgetItemId);
-					if(deleteIdx == -1)
+					if (deleteIdx == -1)
 					{
 						throw new Exception("BudgetItem does not exist");
 					}
@@ -96,61 +97,61 @@ namespace AdvanceCoursework.Services
 					budget.Incomes.RemoveAt(deleteIdx);
 				}
 
-            }
-            catch(Exception error)
+			}
+			catch (Exception error)
 			{
 				throw error;
 			}
 
 
-        }
+		}
 
 		public void UpdateBudgetItem(string budgetItemId, string budgetId, float amount)
 		{
-            Budget budget;
+			Budget budget;
 
-            try
-            {
-                budget = GetBudgetById(budgetId);
-                var getIdx = budget.Expenses.FindIndex(bud => bud.GetItemID() == budgetItemId);
+			try
+			{
+				budget = GetBudgetById(budgetId);
+				var getIdx = budget.Expenses.FindIndex(bud => bud.GetItemID() == budgetItemId);
 
-                if (getIdx > -1)
-                {
-                   
-                    budget.Expenses[getIdx].Amount = amount;
-                }
-                else
-                {
-                    getIdx = budget.Incomes.FindIndex(bud => bud.GetItemID() == budgetItemId);
-                    if (getIdx == -1)
-                    {
-                        throw new Exception("BudgetItem does not exist");
-                    }
+				if (getIdx > -1)
+				{
 
-                    budget.Expenses[getIdx].Amount = amount;
-                }
+					budget.Expenses[getIdx].Amount = amount;
+				}
+				else
+				{
+					getIdx = budget.Incomes.FindIndex(bud => bud.GetItemID() == budgetItemId);
+					if (getIdx == -1)
+					{
+						throw new Exception("BudgetItem does not exist");
+					}
 
-            }
-            catch (Exception error)
-            {
-                throw error;
-            }
+					budget.Expenses[getIdx].Amount = amount;
+				}
 
-        }
+			}
+			catch (Exception error)
+			{
+				throw error;
+			}
 
-        public Budget GetBudgetById(string budgetId)
+		}
+
+		public Budget GetBudgetById(string budgetId)
 		{
-            var getIdx = Budgets.FindIndex(cat => cat.BudgetID == budgetId);
+			var getIdx = Budgets.FindIndex(cat => cat.BudgetID == budgetId);
 
-            if (getIdx == -1)
-            {
+			if (getIdx == -1)
+			{
 				throw new Exception($"Budget with budget id {budgetId} does not exist");
-            }
-            else
-            {
-                return Budgets[getIdx];
-            }
-        }
+			}
+			else
+			{
+				return Budgets[getIdx];
+			}
+		}
 	}
 }
 

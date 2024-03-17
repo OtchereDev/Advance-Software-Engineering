@@ -2,12 +2,11 @@
 
 namespace AdvanceCoursework.Models
 {
-    public class BudgetItem:IDisplay
+    public class BudgetItem : IDisplay
     {
         public string ItemID;
         public float Amount;
         public Category Category { get; private set; }
-
 
         public BudgetItem(float amount, Category category)
         {
