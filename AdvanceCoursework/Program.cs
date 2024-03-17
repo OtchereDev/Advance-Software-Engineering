@@ -278,6 +278,7 @@ class Program
                 Console.WriteLine("1. Delete");
                 Console.WriteLine("2. Update");
                 Console.WriteLine("3. Add");
+                Console.WriteLine("4. Cancel")
                 Console.WriteLine("Enter either 1 or 2 or 3");
                 string uInput = Utils.Utils.AcceptInformation();
 
@@ -292,6 +293,10 @@ class Program
                 else if (uInput == "3")
                 {
                     CreatBudgetItem(budId);
+                }
+                else if (uInput == "4")
+                {
+                    break;
                 }
 
                 Console.WriteLine("Invalid input was provided. Enter either 1 or 2 or 3");
