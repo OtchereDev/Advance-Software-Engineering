@@ -231,7 +231,7 @@ namespace AdvanceCoursework.Services
             try
             {
                 var response = transactionService.GetTransactionById(transId);
-
+                response.View();
             }
             catch (Exception error)
             {
