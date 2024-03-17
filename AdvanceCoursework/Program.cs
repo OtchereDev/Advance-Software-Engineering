@@ -567,7 +567,7 @@ class Program
     {
 
         var (incomes, expenses, incomeTotal, expenseTotal) = expensesTrackerApp.SpendingListing(date);
-        Console.WriteLine($"Your spending for {date.Day}/{date.Month}/{date.Year}");
+        Console.WriteLine($"Your spending from 01/{date.Month}/{date.Year} to  {date.Day}/{date.Month}/{date.Year}");
 
         Console.WriteLine("");
         Console.ForegroundColor = ConsoleColor.Green;

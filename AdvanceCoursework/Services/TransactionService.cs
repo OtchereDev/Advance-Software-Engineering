@@ -116,7 +116,7 @@ namespace AdvanceCoursework.Services
 		public (List<Spending>, List<Spending>, float, float) GetSpending(DateTime dateTime)
 		{
 			var startDate = new DateTime(dateTime.Year, dateTime.Month, 1);
-			var endDate = new DateTime(dateTime.Year, dateTime.Month, 31);
+			var endDate = new DateTime(dateTime.Year, dateTime.Month, DateTime.DaysInMonth(dateTime.Year, dateTime.Month));
 
 			var incomes = new List<Spending>();
 			var expenses = new List<Spending>();
