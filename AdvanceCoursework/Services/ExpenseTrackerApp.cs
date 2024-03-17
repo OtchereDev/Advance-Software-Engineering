@@ -47,6 +47,11 @@ namespace AdvanceCoursework.Services
             {
                 category.View();
             }
+
+            if(Categories.Count() == 0)
+            {
+                Console.WriteLine("There are no categeries");
+            }
         }
 
         public void AddCategory(string categoryName)

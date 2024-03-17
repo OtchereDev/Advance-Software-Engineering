@@ -136,21 +136,25 @@ class Program
                 case "1":
                     Console.WriteLine();
                     expensesTrackerApp.ListAllCategories();
+                    Console.WriteLine();
                     break;
 
                 case "2":
                     Console.WriteLine();
                     CreateCategory();
+                    Console.WriteLine();
                     break;
 
                 case "3":
                     Console.WriteLine();
                     UpdateCategory();
+                    Console.WriteLine();
                     break;
 
                 case "4":
                     Console.WriteLine();
                     DeletCategory();
+                    Console.WriteLine();
                     break;
 
                 case "5":
@@ -307,26 +311,31 @@ class Program
                 case "1":
                     Console.WriteLine();
                     expensesTrackerApp.ListAvailableBudgets();
+                    Console.WriteLine();
                     break;
 
                 case "2":
                     Console.WriteLine();
                     CreateBudget();
+                    Console.WriteLine();
                     break;
 
                 case "3":
                     Console.WriteLine();
                     GetBudget();
+                    Console.WriteLine();
                     break;
 
                 case "4":
                     Console.WriteLine();
                     UpdateBudget();
+                    Console.WriteLine();
                     break;
 
                 case "5":
                     Console.WriteLine();
                     DeleteBudget();
+                    Console.WriteLine();
                     break;
 
                 case "6":
