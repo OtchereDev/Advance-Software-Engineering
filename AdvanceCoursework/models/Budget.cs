@@ -52,7 +52,7 @@ namespace AdvanceCoursework.Models
         // View Budget Details
         public void ViewInline()
         {
-            Console.WriteLine($"BudgetID: {BudgetID}, Budget For:${Month}/${Year}");
+            Console.WriteLine($"BudgetID: {BudgetID}, Budget For:{Month}/{Year}");
         }
 
         public void View()

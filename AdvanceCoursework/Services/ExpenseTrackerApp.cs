@@ -120,7 +120,8 @@ namespace AdvanceCoursework.Services
             Console.WriteLine("Your Available budget are:");
             foreach (Budget budget in Budgets)
             {
-                budget.ViewInline();
+                budget.View();
+                Console.WriteLine("------------------------");
             }
 
             if (Budgets.Count() == 0)
