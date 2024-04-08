@@ -1,8 +1,9 @@
-﻿using System;
+﻿using AdvanceCoursework.Interfaces;
+
 namespace AdvanceCoursework.Models
 {
-	public class Category
-	{
+    public class Category : IDisplay
+    {
         private string Name;
         private string CategoryID;
 
@@ -17,6 +18,11 @@ namespace AdvanceCoursework.Models
             return CategoryID;
         }
 
+        public string GetName()
+        {
+            return Name;
+        }
+
         public void SetName(string name)
         {
             Name = name;
@@ -24,7 +30,7 @@ namespace AdvanceCoursework.Models
 
         public void View()
         {
-            Console.WriteLine($"CatID ${CategoryID}: {Name}");
+            Console.WriteLine($"CatID {CategoryID}: {Name}");
         }
 
         public void ViewMain()
@@ -33,4 +39,3 @@ namespace AdvanceCoursework.Models
         }
     }
 }
-

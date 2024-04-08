@@ -1,9 +1,9 @@
-﻿using System;
+using AdvanceCoursework.Interfaces;
 using AdvanceCoursework.Models;
 
 namespace AdvanceCoursework.Services
 {
-	public class CategoryService
+	public class CategoryService : ICategoryService
 	{
 		private List<Category> Categories;
 
@@ -14,7 +14,7 @@ namespace AdvanceCoursework.Services
 
 		public bool AddCategory(string categoryName)
 		{
-			if(categoryName.Length > 0)
+			if (categoryName.Length > 0)
 			{
 				var newCategory = new Category(categoryName);
 				Categories.Add(newCategory);
@@ -30,7 +30,7 @@ namespace AdvanceCoursework.Services
 		{
 			var deleteIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
 
-			if(deleteIdx == -1)
+			if (deleteIdx == -1)
 			{
 				return false;
 			}
@@ -40,42 +40,42 @@ namespace AdvanceCoursework.Services
 				return true;
 			}
 
-        }
+		}
 
-		 public bool UpdateCategory(string categoryId, string categoryName)
-		 {
-			if(categoryName.Length <= 0)
+		public bool UpdateCategory(string categoryId, string categoryName)
+		{
+			if (categoryName.Length <= 0)
 			{
 				return false;
 			}
 
-            var updateIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
+			var updateIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
 
-            if (updateIdx == -1)
-            {
-                return false;
-            }
-            else
-            {
+			if (updateIdx == -1)
+			{
+				return false;
+			}
+			else
+			{
 				var category = Categories[updateIdx];
 				category.SetName(categoryName);
-                return true;
-            }
-        }
+				return true;
+			}
+		}
 
 		public Category GetCategoryById(string categoryId)
 		{
-            var getIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
+			var getIdx = Categories.FindIndex(cat => cat.GetID() == categoryId);
 
-            if (getIdx == -1)
-            {
+			if (getIdx == -1)
+			{
 				throw new Exception("Category does not exists");
-            }
-            else
-            {
-                return Categories[getIdx];
-            }
-        }
+			}
+			else
+			{
+				return Categories[getIdx];
+			}
+		}
 
 	}
 }
